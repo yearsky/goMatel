@@ -18,6 +18,8 @@ const HomeScreen = () => {
   const tabs = useSelector((state) => state.tabHome.tab);
   const [selectedTab, setSelectedTab] = useState("");
   const products = useSelector((state) => state.products.products);
+  const username = useSelector((state) => state.auth.username);
+  console.log(username);
 
   const textAnimation = {
     transform: [
@@ -106,7 +108,7 @@ const HomeScreen = () => {
                 fontFamily: "louis",
               }}
             >
-              Tika
+              {username}
             </Text>
           </Animated.View>
         </View>

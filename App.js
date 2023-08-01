@@ -35,14 +35,14 @@ export default function App() {
     prepare();
   }, []);
 
-  if (!appIsReady) {
-    return <Text>Error</Text>;
-  }
+  // const isAuthenticated = store.getState().auth.isAuthenticated;
+  // if (!isAuthenticated) {
+  //   return <Login />;
+  // }
 
   return (
     <Provider store={store}>
       <Navigation />
-
       <StatusBar style="auto" />
     </Provider>
   );
