@@ -19,7 +19,20 @@ const HomeScreen = () => {
   const [selectedTab, setSelectedTab] = useState("");
   const products = useSelector((state) => state.products.products);
   const username = useSelector((state) => state.auth.username);
-  console.log(username);
+
+  const currentTime = new Date();
+  const currentHour = currentTime.getHours();
+
+  let greetingMessage = "";
+
+  // Menentukan pesan selamat berdasarkan waktu saat ini
+  if (currentHour < 12) {
+    greetingMessage = "Selamat Pagi,";
+  } else if (currentHour < 18) {
+    greetingMessage = "Selamat Siang,";
+  } else {
+    greetingMessage = "Selamat Malam,";
+  }
 
   const textAnimation = {
     transform: [
@@ -95,7 +108,7 @@ const HomeScreen = () => {
                 fontFamily: "louis",
               }}
             >
-              Selamat Pagi,
+              {greetingMessage}
             </Text>
             <Text
               style={{
@@ -103,7 +116,7 @@ const HomeScreen = () => {
                 textAlign: "left",
                 paddingTop: 5,
                 paddingLeft: deviceWidth * 0.07,
-                fontSize: 42,
+                fontSize: 20,
                 fontWeight: "bold",
                 fontFamily: "louis",
               }}
