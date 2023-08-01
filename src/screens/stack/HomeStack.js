@@ -4,7 +4,13 @@ const Stack = createNativeStackNavigator();
 export const HomeStack = () => {
   return (
     <Stack.Navigator
-      screenOptions={{ contentStyle: { backgroundColor: "aliceblue" } }}
+      // screenOptions={{ contentStyle: { backgroundColor: "aliceblue" } }}
+      screenOptions={{
+        headerShown: false,
+        contentStyle: {
+          backgroundColor: "aliceblue",
+        },
+      }}
     >
       <Stack.Screen
         name="Home"

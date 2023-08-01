@@ -37,7 +37,7 @@ const Login = () => {
 
     setLoading(true); // Set loading state to true when login starts
 
-    await new Promise((resolve) => setTimeout(resolve, 1500));
+    await new Promise((resolve) => setTimeout(resolve, 1000));
 
     setLoading(false); // Set loading state to false when login finishes
 
