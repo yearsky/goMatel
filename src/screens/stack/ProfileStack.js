@@ -1,28 +1,25 @@
-import HomeScreen from "../HomeScreen";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import ProfileScreen from "../ProfileScreen";
 const Stack = createNativeStackNavigator();
-export const HomeStack = () => {
+export const ProfileStack = () => {
   return (
     <Stack.Navigator
       // screenOptions={{ contentStyle: { backgroundColor: "aliceblue" } }}
       screenOptions={{
-        headerShown: true,
+        headerShown: false,
         contentStyle: {
-          backgroundColor: "#F4F2DE",
+          backgroundColor: "aliceblue",
         },
       }}
     >
       <Stack.Screen
-        name="Home"
-        component={HomeScreen}
+        name="Profile"
+        component={ProfileScreen}
         options={({ navigation }) => ({
           headerBackTitleVisible: false,
           headerTitle: "",
           headerTitleAlign: "center",
           headerShadowVisible: false,
-          headerStyle: {
-            backgroundColor: "#E9B384",
-          },
         })}
       />
     </Stack.Navigator>

@@ -8,6 +8,7 @@ import { HomeStack } from "./screens/stack/HomeStack";
 import { ProductStack } from "./screens/stack/ProductStack";
 import { useSelector } from "react-redux";
 import Login from "./screens/LoginScreen";
+import { ProfileStack } from "./screens/stack/ProfileStack";
 
 const Stack = createNativeStackNavigator();
 const BottomTab = createBottomTabNavigator();
@@ -68,6 +69,18 @@ const AppStack = () => {
           headerShown: false,
           tabBarIcon: ({ color, size }) => (
             <Feather name="shopping-bag" size={size} color={color} />
+          ),
+          tabBarShowLabel: false,
+        }}
+      />
+      <BottomTab.Screen
+        name="ProfileTab"
+        component={ProfileStack}
+        options={{
+          title: "Cart",
+          headerShown: false,
+          tabBarIcon: ({ color, size }) => (
+            <Ionicons name="person-outline" size={size} color={color} />
           ),
           tabBarShowLabel: false,
         }}
