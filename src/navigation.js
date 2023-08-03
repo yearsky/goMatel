@@ -5,7 +5,7 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { Feather, Ionicons } from "@expo/vector-icons";
 import { CartStack } from "./screens/stack/CartStack";
 import { HomeStack } from "./screens/stack/HomeStack";
-import { ProductStack } from "./screens/stack/ProductStack";
+import { ActivityStack } from "./screens/stack/ActivityStack";
 import { useSelector } from "react-redux";
 import Login from "./screens/LoginScreen";
 import { ProfileStack } from "./screens/stack/ProfileStack";
@@ -50,12 +50,12 @@ const AppStack = () => {
         }}
       ></BottomTab.Screen>
       <BottomTab.Screen
-        name="Store"
-        component={ProductStack}
+        name="Activity"
+        component={ActivityStack}
         options={{
           headerShown: false,
           tabBarIcon: ({ color, size }) => (
-            <Ionicons name="grid-outline" size={size} color={color} />
+            <Ionicons name="timer-outline" size={size} color={color} />
           ),
           tabBarShowLabel: false,
         }}

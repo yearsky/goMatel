@@ -1,5 +1,6 @@
-// authSlice.js
 import { createSlice } from "@reduxjs/toolkit";
+import { persistReducer } from "redux-persist";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 const initialState = {
   isAuthenticated: false,
@@ -22,5 +23,16 @@ const authSlice = createSlice({
   },
 });
 
+// Persist configuration
+const authPersistConfig = {
+  key: "auth",
+  storage: AsyncStorage,
+};
+
+const persistedAuthReducer = persistReducer(
+  authPersistConfig,
+  authSlice.reducer
+);
+
 export const { setAuthenticated, resetState } = authSlice.actions;
-export default authSlice.reducer;
+export default persistedAuthReducer;

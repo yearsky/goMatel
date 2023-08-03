@@ -83,13 +83,14 @@ const styles = StyleSheet.create({
     width: "100%",
     height: 35,
     marginBottom: 10,
-    marginLeft: 9,
-    borderWidth: 2,
+    marginLeft: 10,
+    borderWidth: 1,
     textAlign: "center",
     paddingHorizontal: 20,
+    backgroundColor: "white",
     paddingVertical: 8,
     borderRadius: 15,
-    borderColor: "lightgrey",
+    borderColor: "black",
   },
 });
 

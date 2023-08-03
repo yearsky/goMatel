@@ -4,11 +4,9 @@ import Navigation from "./src/navigation";
 import React, { useCallback, useEffect, useState } from "react";
 import { Provider } from "react-redux";
 import * as SplashScreen from "expo-splash-screen";
-import { store } from "./src/store";
-import AppLoading from "expo-app-loading";
+import { store, persistor } from "./src/store";
+import { PersistGate } from "redux-persist/integration/react";
 import * as Font from "expo-font";
-
-SplashScreen.preventAutoHideAsync();
 
 export default function App() {
   const [appIsReady, setAppIsReady] = useState(false);
@@ -35,15 +33,16 @@ export default function App() {
     prepare();
   }, []);
 
-  // const isAuthenticated = store.getState().auth.isAuthenticated;
-  // if (!isAuthenticated) {
-  //   return <Login />;
-  // }
+  if (!appIsReady) {
+    return null;
+  }
 
   return (
     <Provider store={store}>
-      <Navigation />
-      <StatusBar style="auto" />
+      <PersistGate loading={null} persistor={persistor}>
+        <Navigation />
+        <StatusBar style="auto" />
+      </PersistGate>
     </Provider>
   );
 }
