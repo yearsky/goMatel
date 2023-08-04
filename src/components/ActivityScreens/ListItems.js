@@ -39,7 +39,7 @@ const ListItemsActivity = ({ dataActivity, handlePresentModalPress }) => {
         <>
           <View
             style={{
-              height: deviceHeight * 0.5,
+              height: deviceHeight * 0.51,
               paddingBottom: deviceHeight * 0.02,
             }}
           >
