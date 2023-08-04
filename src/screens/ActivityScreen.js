@@ -1,86 +1,25 @@
-import React, { useMemo, useRef, useCallback, useState } from "react";
-import {
-  FlatList,
-  Image,
-  Pressable,
-  ScrollView,
-  Text,
-  TouchableOpacity,
-  View,
-  Button,
-  RefreshControl,
-  Dimensions,
-  useWindowDimensions,
-  TouchableWithoutFeedback,
-  TextInput,
-} from "react-native";
-import { useDispatch, useSelector } from "react-redux";
-import styles from "../../assets/styles/GlobalStyles";
-import BannerHome from "../components/BannerHome";
-import { productsSlice } from "../store/productsSlice";
-import { SafeAreaView } from "react-native-safe-area-context";
 import { Ionicons } from "@expo/vector-icons";
 import {
+  BottomSheetBackdrop,
   BottomSheetModal,
   BottomSheetModalProvider,
-  BottomSheetBackdrop,
 } from "@gorhom/bottom-sheet";
+import { Image, Text, TouchableOpacity, View } from "react-native";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
-import { activitySlice } from "../store/activitySlice";
+import { SafeAreaView } from "react-native-safe-area-context";
+import ListItemsActivity from "../components/ActivityScreens/ListItems";
+import useHookActivity from "../hook/Activity/HookActivity";
 
 const ActivityScreen = ({ navigation }) => {
-  // const navigation = useNavigation();
-  const dispatch = useDispatch();
-  const [selectedTab, setSelectedTab] = useState("");
-  const [isVisible, setVisible] = useState(false);
-  const { width } = useWindowDimensions();
-  const [refreshing, setRefreshing] = useState(false);
-  const dataActivity = useSelector((state) => state.activityItems);
-
-  const selectedActivity = useSelector(
-    (state) => state.activityItems.selectedActivity
-  );
-  const tabs = useSelector((state) => state.tab.tab);
-
-  const bottomSheetModalRef = useRef(null);
-
-  // variables
-  const snapPoints = useMemo(() => ["15%", "50%"], []);
-
-  // callbacks
-  const handlePresentModalPress = useCallback(async (item) => {
-    dispatch(activitySlice.actions.setSelectedActivity(item.id));
-    await bottomSheetModalRef.current?.present({ selectedActivity });
-  }, []);
-
-  const onRefresh = useCallback(() => {
-    setRefreshing(true);
-    setTimeout(() => {
-      setRefreshing(false);
-    }, 2000);
-  }, []);
-
-  const renderItem = useCallback(
-    ({ item }) => (
-      <TouchableOpacity
-        key={item.id}
-        className="flex-row bg-white rounded-xl items-center my-2 p-3"
-        onPress={() => handlePresentModalPress(item)}
-      >
-        <Image
-          source={require("../../assets/login.png")}
-          style={{ width: 50, height: 50 }}
-          className="rounded-full bg-white mx-1"
-        />
-        <View className="flex-col">
-          <Text className="text-black font-bold">{item.tiketId}</Text>
-          <Text className="text-slate-400">{item.activity}</Text>
-        </View>
-        <Text className="ml-auto">{item.date}</Text>
-      </TouchableOpacity>
-    ),
-    []
-  );
+  const {
+    deviceHeight,
+    devicewidth,
+    selectedActivity,
+    bottomSheetModalRef,
+    snapPoints,
+    handlePresentModalPress,
+    dataActivity,
+  } = useHookActivity();
 
   return (
     <>
@@ -113,7 +52,7 @@ const ActivityScreen = ({ navigation }) => {
               </View>
             </View>
 
-            <View className="mt-10 mx-5">
+            <View className="mt-10">
               <View className="flex-row justify-center gap-x-2">
                 <TouchableOpacity className="bg-white h-8 w-20 flex-row justify-center border-blue-500 border-2 items-center rounded-xl">
                   <Text>Semua</Text>
@@ -123,37 +62,17 @@ const ActivityScreen = ({ navigation }) => {
                 </TouchableOpacity>
                 <TouchableOpacity className="bg-white h-8 w-28 gap-x-2 flex-row justify-center border-black border-2 items-center rounded-xl">
                   <Text>Filter</Text>
-                  <Ionicons name="filter" size={24} color="black" />
+                  <Ionicons name="filter" size={20} color="black" />
                 </TouchableOpacity>
                 <TouchableOpacity className="bg-white h-8 w-8 flex-row justify-center border-black border-2 items-center rounded-xl">
                   <Ionicons name="search" size={24} color="black" />
                 </TouchableOpacity>
               </View>
             </View>
-            <View className="mx-5 mt-5">
-              <View
-                style={{
-                  height: Dimensions.get("window").height * 0.5,
-                  paddingBottom: Dimensions.get("window").height * 0.02,
-                }}
-              >
-                <FlatList
-                  data={dataActivity.activityItems}
-                  keyExtractor={(item) => item.id.toString()}
-                  showsVerticalScrollIndicator={false}
-                  renderItem={renderItem}
-                  contentContainerStyle={{
-                    paddingBottom: Dimensions.get("window").height * 0.05,
-                  }}
-                  refreshControl={
-                    <RefreshControl
-                      refreshing={refreshing}
-                      onRefresh={onRefresh}
-                    />
-                  }
-                />
-              </View>
-            </View>
+            <ListItemsActivity
+              dataActivity={dataActivity}
+              handlePresentModalPress={handlePresentModalPress}
+            />
           </View>
           <BottomSheetModal
             ref={bottomSheetModalRef}
