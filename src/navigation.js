@@ -39,16 +39,28 @@ const AppStack = () => {
   return (
     <BottomTab.Navigator>
       <BottomTab.Screen
-        name="HomeTab"
+        name="Beranda"
         component={HomeStack}
         options={{
           headerShown: false,
           tabBarIcon: ({ color, size }) => (
             <Feather name="home" size={size} color={color} />
           ),
-          tabBarShowLabel: false,
+          tabBarShowLabel: true,
         }}
       ></BottomTab.Screen>
+
+      <BottomTab.Screen
+        name="Data Nopol"
+        component={CartStack}
+        options={{
+          headerShown: false,
+          tabBarIcon: ({ color, size }) => (
+            <Ionicons name="document-text-outline" size={size} color={color} />
+          ),
+          tabBarShowLabel: true,
+        }}
+      />
       <BottomTab.Screen
         name="Activity"
         component={ActivityStack}
@@ -60,19 +72,6 @@ const AppStack = () => {
           tabBarShowLabel: false,
         }}
       ></BottomTab.Screen>
-
-      <BottomTab.Screen
-        name="CartTab"
-        component={CartStack}
-        options={{
-          title: "Cart",
-          headerShown: false,
-          tabBarIcon: ({ color, size }) => (
-            <Feather name="shopping-bag" size={size} color={color} />
-          ),
-          tabBarShowLabel: false,
-        }}
-      />
       <BottomTab.Screen
         name="ProfileTab"
         component={ProfileStack}
