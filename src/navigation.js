@@ -3,12 +3,12 @@ import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 
 import { Feather, Ionicons } from "@expo/vector-icons";
-import { CartStack } from "./screens/stack/CartStack";
 import { HomeStack } from "./screens/stack/HomeStack";
 import { ActivityStack } from "./screens/stack/ActivityStack";
 import { useSelector } from "react-redux";
 import Login from "./screens/LoginScreen";
 import { ProfileStack } from "./screens/stack/ProfileStack";
+import { NopolStack } from "./screens/stack/NopolStack";
 
 const Stack = createNativeStackNavigator();
 const BottomTab = createBottomTabNavigator();
@@ -52,7 +52,7 @@ const AppStack = () => {
 
       <BottomTab.Screen
         name="Data Nopol"
-        component={CartStack}
+        component={NopolStack}
         options={{
           headerShown: false,
           tabBarIcon: ({ color, size }) => (
@@ -69,19 +69,19 @@ const AppStack = () => {
           tabBarIcon: ({ color, size }) => (
             <Ionicons name="timer-outline" size={size} color={color} />
           ),
-          tabBarShowLabel: false,
+          tabBarShowLabel: true,
         }}
       ></BottomTab.Screen>
       <BottomTab.Screen
-        name="ProfileTab"
+        name="Profile Tab"
         component={ProfileStack}
         options={{
-          title: "Cart",
           headerShown: false,
+          title: "Profile",
           tabBarIcon: ({ color, size }) => (
             <Ionicons name="person-outline" size={size} color={color} />
           ),
-          tabBarShowLabel: false,
+          tabBarShowLabel: true,
         }}
       />
     </BottomTab.Navigator>

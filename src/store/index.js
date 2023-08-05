@@ -6,6 +6,8 @@ import { cartSlice } from "./cartSlice";
 import { tabSlice } from "./tabSlice";
 import { tabHomeSlice } from "./tabHomeSlice";
 import { activitySlice } from "./activitySlice";
+import { nopolSlice } from "./nopolSlice";
+
 import authReducer from "./authSlice";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
@@ -18,6 +20,7 @@ export const store = configureStore({
   reducer: {
     products: productsSlice.reducer,
     cart: cartSlice.reducer,
+    nopol: nopolSlice.reducer,
     activityItems: activitySlice.reducer,
     tab: tabSlice.reducer,
     auth: authReducer, // Use the persisted reducer here
