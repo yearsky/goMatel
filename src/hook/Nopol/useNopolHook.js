@@ -8,6 +8,11 @@ const useHookNopol = () => {
   const dispatch = useDispatch();
   const [refreshing, setRefreshing] = useState(false);
   const dataNopol = useSelector((state) => state.nopol);
+  const sortedDataNopol = [...dataNopol.dataNopol].sort(
+    (a, b) =>
+      new Date(a.date.split("/").reverse().join("-")) -
+      new Date(b.date.split("/").reverse().join("-"))
+  );
 
   const { bottomSheetModalRef, refB, snapPoints } = useBottomSheet();
 
@@ -40,7 +45,7 @@ const useHookNopol = () => {
     snapPoints: snapPoints,
     handlePresentModalPress: handlePresentModalPress,
     onRefresh: onRefresh,
-    dataNopol: dataNopol,
+    dataNopol: sortedDataNopol,
     handleAddModal: handleAddModal,
   };
 };

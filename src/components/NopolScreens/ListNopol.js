@@ -54,7 +54,7 @@ const ListNopolCard = ({ data, handlePresentModalPress }) => {
 
   return (
     <View className="mt-5">
-      {data.dataNopol.length > 0 ? (
+      {data.length > 0 ? (
         <>
           <View
             style={{
@@ -63,7 +63,7 @@ const ListNopolCard = ({ data, handlePresentModalPress }) => {
             }}
           >
             <FlatList
-              data={data.dataNopol}
+              data={data}
               keyExtractor={(item) => item.id.toString()}
               showsVerticalScrollIndicator={false}
               renderItem={renderItem}

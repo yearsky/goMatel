@@ -12,7 +12,22 @@ export const nopolSlice = createSlice({
   reducers: {
     setSelectedNopol: (state, action) => {
       const nopolId = action.payload;
-      state.selectedData = state.activityItems.find((p) => p.id === activityId);
+      state.selectedData = state.dataNopol.find((p) => p.id === nopolId);
+    },
+    addNewData: (state, action) => {
+      const newData = action.payload;
+      state.dataNopol.push(newData);
+    },
+    sortByDate: (state) => {
+      state.dataNopol.sort((a, b) => {
+        const dateA = new Date(a.date.split("/").reverse().join("-"));
+        const dateB = new Date(b.date.split("/").reverse().join("-"));
+        return dateA - dateB;
+      });
     },
   },
 });
+
+export const { setSelectedNopol, addNewData, sortByDate } = nopolSlice.actions;
+
+export default nopolSlice.reducer;

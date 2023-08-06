@@ -61,10 +61,10 @@ const Login = () => {
     <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
       <View className="flex-1 bg-white" style={{ backgroundColor: "#877dfa" }}>
         <SafeAreaView className="flex ">
-          <View className="flex-row justify-center mt-10 mb-20">
+          <View className="flex-row justify-center mt-10 mb-10">
             <Image
               source={require("../../assets/login.png")}
-              style={{ width: 200, height: 200 }}
+              style={{ width: 300, height: 300 }}
             />
           </View>
         </SafeAreaView>

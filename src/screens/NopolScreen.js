@@ -15,6 +15,7 @@ import { GestureHandlerRootView } from "react-native-gesture-handler";
 import ListNopolCard from "../components/NopolScreens/ListNopol";
 import useHookNopol from "../hook/Nopol/useNopolHook";
 import BtmSheetNopolView from "../components/NopolScreens/btmSheet";
+import BtmSheetAddData from "../components/NopolScreens/btmSheetAddData";
 import {
   BottomSheetBackdrop,
   BottomSheetModal,
@@ -32,6 +33,8 @@ const NopolScreen = () => {
     handlePresentModalPress,
     dataNopol,
   } = useHookNopol();
+
+  const snapDeviceHeight = deviceHeight > 800 ? "75%" : "90%";
 
   return (
     <>
@@ -108,7 +111,7 @@ const NopolScreen = () => {
           <BottomSheetModal
             ref={refB}
             index={1}
-            snapPoints={[200, "80%"]}
+            snapPoints={[200, snapDeviceHeight]}
             backdropComponent={(backdropProps) => (
               <BottomSheetBackdrop
                 {...backdropProps}
@@ -117,7 +120,7 @@ const NopolScreen = () => {
             )}
             $modal={true}
           >
-            <Text>Hola!</Text>
+            <BtmSheetAddData />
           </BottomSheetModal>
           <BottomSheetModal
             ref={bottomSheetModalRef}
